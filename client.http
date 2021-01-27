@@ -8,3 +8,12 @@ Content-Type: application/json
   "password": "password",
   "password_confirmation": "password"
 }
+
+### Sign In
+POST http://localhost:3000/auth/sign_in
+Content-Type: application/json 
+
+{
+  "email": "test@gmail.com", 
+  "password": "password"
+} 
