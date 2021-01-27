@@ -12,8 +12,8 @@ class UsersController < ApplicationController
   end
 
   def sign_in 
-    @user = User.find_by_email(params[:email])
-    if @user && @user.authenticate(params[:password])
+    @user = User.find_by_email(params[:auth][:email])
+    if @user && @user.authenticate(params[:auth][:password])
         auth_token = Knock::AuthToken.new payload: {sub: @user.id}
         render json: {username: @user.username, jwt: auth_token.token}, status: 200
     else
