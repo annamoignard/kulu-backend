@@ -1,3 +1,5 @@
 Rails.application.routes.draw do
-  post "/sign-up", to: "users#create" 
+    scope '/auth' do
+      post "/sign-up", to: "users#create" 
+    end 
 end
