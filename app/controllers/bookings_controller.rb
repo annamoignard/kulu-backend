@@ -1,15 +1,14 @@
 class BookingsController < ApplicationController
+  
   def index
-    Bookings = Bookings.all
+    bookings = Booking.all
     render json: bookings
   end
 
   def show
-   
   end
   
   def create
-
   end
 
 end
