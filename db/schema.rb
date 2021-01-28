@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_27_024827) do
+ActiveRecord::Schema.define(version: 2021_01_28_031915) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,13 +32,10 @@ ActiveRecord::Schema.define(version: 2021_01_27_024827) do
 
   create_table "instructors", force: :cascade do |t|
     t.string "name"
-    t.string "string"
-    t.string "booking_id"
-    t.string "integer"
-    t.bigint "session_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["session_id"], name: "index_instructors_on_session_id"
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_instructors_on_user_id"
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -61,5 +58,5 @@ ActiveRecord::Schema.define(version: 2021_01_27_024827) do
   end
 
   add_foreign_key "clients", "bookings"
-  add_foreign_key "instructors", "sessions"
+  add_foreign_key "instructors", "users"
 end
