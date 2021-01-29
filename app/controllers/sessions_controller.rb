@@ -1,11 +1,11 @@
 class SessionsController < ApplicationController
-  before_action :authorize_user
+  before_action :authorize_user, only: [:create, :destroy]
 
   #  should this logic be in the sessions controller, or the instructor controller and then i just give access only to instrucotrs?
   
 
   def index
-    sessions = Sessions.all
+    sessions = Session.all
     render json: sessions
   end
 
@@ -32,7 +32,7 @@ class SessionsController < ApplicationController
   end 
 
   def authorize_user
-    unless user.instructor 
+    unless current_user.instructor 
       render status: :unauthorized
     end 
   end  
