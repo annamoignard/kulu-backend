@@ -39,8 +39,11 @@ instructor_five = Instructor.create(user_id: user_five.id, name: "Nicole")
 # ^ should instructors each have a different name? 
 
 #Seeded Sessions
-Session.create(date: "01-02-2021", name: "Vinyasa Flow", time: "5:00", instructor_id: instructor_five.id, minutes: 60)
-
+session_one = Session.create(date: "01-02-2021", name: "Vinyasa Flow", time: "5:00pm", instructor_id: instructor_five.id, minutes: 60)
+session_two = Session.create(date: "01-02-2021", name: "Vinyasa Flow", time: "8:00am", instructor_id: instructor_one.id, minutes: 60)
+session_three = Session.create(date: "01-02-2021", name: "Vinyasa Flow", time: "6:00am", instructor_id: instructor_three.id, minutes: 60)
+session_four = Session.create(date: "02-02-2021", name: "Vinyasa Flow", time: "5:00", instructor_id: instructor_four.id, minutes: 60)
+session_five = Session.create(date: "03-02-2021", name: "Vinyasa Flow", time: "5:00", instructor_id: instructor_two.id, minutes: 60)
 
 
 #Seeded Bookings
