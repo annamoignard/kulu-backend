@@ -11,12 +11,12 @@ class SessionsController < ApplicationController
 
   
   def create
-    @session = Session.create(session_params)
-    if @session.save 
+    # @session = Session.create(session_params)
+    # if @session.save 
       #  good
-    else
+    # else
       #  bad
-    end
+    # end
   end 
 
   def update 
