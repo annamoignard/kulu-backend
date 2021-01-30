@@ -44,7 +44,6 @@ session_two = Session.create(date: "01-02-2021", name: "Vinyasa Flow", time: "8:
 session_three = Session.create(date: "01-02-2021", name: "Yin", time: "6:00am", instructor_id: instructor_three.id, minutes: 90)
 session_four = Session.create(date: "02-02-2021", name: "Power Flow", time: "5:00", instructor_id: instructor_four.id, minutes: 45)
 session_five = Session.create(date: "03-02-2021", name: "Yin", time: "5:00", instructor_id: instructor_two.id, minutes: 60)
-
 session_six = Session.create(date: "03-02-2021", name: "Vinyasa Flow", time: "5:00", instructor_id: instructor_two.id, minutes: 60)
 session_seven = Session.create(date: "04-02-2021", name: "Power Flow", time: "5:00", instructor_id: instructor_three.id, minutes: 45)
 session_eight = Session.create(date: "04-02-2021", name: "Vinyasa Flow", time: "5:00", instructor_id: instructor_five.id, minutes: 60)
