@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   before_action :authorize_user, only: [:create, :destroy]
+  before_action :set_session, only: [:show, :destroy, :update]
 
   #  should this logic be in the sessions controller, or the instructor controller and then i just give access only to instrucotrs?
   
@@ -8,6 +9,10 @@ class SessionsController < ApplicationController
     sessions = Session.all
     render json: sessions
   end
+
+  def show
+    render json:  @session 
+  end 
 
   
   def create
@@ -26,6 +31,10 @@ class SessionsController < ApplicationController
   end 
 
   private 
+
+  def set_session 
+    @session = Session.find(params[:id])
+  end
 
   def session_params
     params.require(:session).permit(:data, :time, :name, :minutes)
