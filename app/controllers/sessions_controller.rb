@@ -1,17 +1,15 @@
 class SessionsController < ApplicationController
-  before_action :authorize_user, only: [:create, :destroy, :update]
   before_action :set_session, only: [:show, :destroy, :update]
 
   def index
     sessions = Session.all
-    render json: sessions
+    render json: {sessions: sessions, instructor: current_user.try(:instructor)}
   end
 
   def show
     render json:  @session 
   end 
 
-  
   def create
     session = Session.new(sessios_params)
     session.user_id = current_user.id
@@ -44,10 +42,5 @@ class SessionsController < ApplicationController
     params.require(:session).permit(:data, :time, :name, :minutes, :cost)
   end 
 
-  def authorize_user
-    unless current_user.instructor 
-      render status: :unauthorized
-    end 
-  end  
   
 end
