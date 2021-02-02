@@ -10,12 +10,14 @@ class BookingsController < ApplicationController
     def show
       render json: @booking
     end 
-  
+    
+  #clients do not edit or create new bookings. 
     def create
     end 
   
     def update 
     end 
+
   #client can drop/cancel a booking
     def destroy
       @booking.destroy
@@ -29,12 +31,6 @@ class BookingsController < ApplicationController
   
     def booking_params
       params.require(:booking).permit(:date, :time, :name, :session, :cost)
-    end 
-  
-    
-  end
-  
-  def create
-  end
+    end
 
 end
