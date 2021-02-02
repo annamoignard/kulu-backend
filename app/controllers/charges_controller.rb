@@ -3,21 +3,24 @@ class ChargesController < ApplicationController
   end
   
   def create
-    Stripe.api_key = ENV['STRIPE_SECRET_KEY']
-    order = Order.find(params[:orderId])
-    amount = order.session.sum(:cost) * 100
-
-    charge = Stripe::Charge.create(
-      customer => customer.id,
-      amount => amount,
-      description: 'Kulu Yoga Studio',
-      currency: 'aud',
-      :source => params[:token]
-    )
-
-  rescue Stripe::CardError => e
-    flash[:errors] = e.message
-    redirect_to new_charge_path
+    session = Stripe::Checkout::Session.create({
+      payment_method_types: ['card'],
+      line_items: [{
+        price_data: {
+          unit_amount: 2500,
+          currency: 'aud',
+          product_data: {
+            name: 'Kulu Yoga Studio',
+          },
+        },
+        quantity: 1,
+      }],
+      mode: 'payment',
+      success_url: "http://localhost:3000/charges/success",
+      cancel_url: "http://localhost:3000/charges/cancel",
+    })
+    render json: { id: session.id }
   end
+
 
 end
