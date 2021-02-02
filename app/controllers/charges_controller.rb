@@ -22,5 +22,14 @@ class ChargesController < ApplicationController
     render json: { id: session.id }
   end
 
+  def webhook
+    payload = request.body.read
+    puts payload.inspect
+  end
 
+  def success
+    @booking = booking.find(params[:booking_id])
+  end
+
+  def cancel; end
 end
