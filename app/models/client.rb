@@ -1,3 +1,4 @@
 class Client < ApplicationRecord
-  belongs_to :booking
+  belongs_to :user
+  has_many :bookings
 end
