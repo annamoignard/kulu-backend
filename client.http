@@ -17,3 +17,12 @@ Content-Type: application/json
   "email": "test@gmail.com", 
   "password": "password"
 } 
+
+### Sign In
+POST http://localhost:3000/sessions
+Content-Type: application/json 
+
+{
+  "name": "testa"
+  
+} 

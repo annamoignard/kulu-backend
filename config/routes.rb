@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  resources :bookings, only: [:index, :show, :create] 
   resources :sessions
+  resources :bookings, only: [:index, :show, :create] 
   resources :instructors, only: [:index, :show, :create, :edit, :destroy]
   resources :status, only: [:index]
     scope '/auth' do

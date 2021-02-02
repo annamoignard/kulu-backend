@@ -7,22 +7,22 @@ class SessionsController < ApplicationController
   end
 
   def show
-    render json:  @session 
+    render json: @session 
   end 
 
   def create
-    session = Session.new(sessios_params)
-    session.user_id = current_user.id
+    session = Session.new(session_params)
+    session.instructor_id = current_user.id
     if session.save
-      render status: :created 
+      render status: :created
     else
-      render status: :bad_request
+      render status: :bad_request 
     end
   end 
 
   def update 
-    if @session.update(sessions_params)
-      render status: :no_content
+    if @session.update(session_params)
+      render status: :ok
     else
       render status: :bad_request
     end
@@ -39,7 +39,7 @@ class SessionsController < ApplicationController
   end
 
   def session_params
-    params.require(:session).permit(:data, :time, :name, :minutes, :cost)
+    params.require(:session).permit(:date, :time, :name, :minutes, :cost)
   end 
 
   
