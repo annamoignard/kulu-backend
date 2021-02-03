@@ -1,5 +1,5 @@
 class BookingsController < ApplicationController
-    before_action :set_session, only: [:show, :destroy]
+  before_action :set_session, only: [:show, :destroy]
   
     #client sees bookings they have made. Instructors see client bookings. 
     def index
@@ -13,6 +13,13 @@ class BookingsController < ApplicationController
     
   #clients do not edit or create new bookings. 
     def create
+      booking = booking.new(booking_params)
+      booking.client_id = current_user.id
+      if booking.save
+        render status: :created
+      else
+        render status: :bad_request 
+      end
     end 
   
     def update 
