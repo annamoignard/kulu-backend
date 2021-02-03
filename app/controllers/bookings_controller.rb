@@ -1,28 +1,31 @@
 class BookingsController < ApplicationController
-  before_action :set_session, only: [:show, :destroy]
+  before_action :set_booking, only: [:show, :destroy]
   
     #client sees bookings they have made. Instructors see client bookings. 
     def index
       bookings = Booking.all
       render json: {bookings: bookings, client: current_user.try(:client)}
     end
-  #client can see booking
-    def show
-      render json: @booking
-    end 
+
     
-  #clients do not edit or create new bookings. 
+  #New booking is created 
     def create
-      booking = booking.new(booking_params)
+      @booking = booking.create(booking_params)
       booking.client_id = current_user.id
       if booking.save
         render status: :created
       else
-        render status: :bad_request 
+        render status: :unprocessable_entry
       end
     end 
-  
-    def update 
+
+    #client can see booking
+    def show
+      render json: @booking
+    end 
+   
+    #client does not update
+    def update
     end 
 
   #client can drop/cancel a booking
