@@ -3,6 +3,9 @@ class ChargesController < ApplicationController
   end
   
   def create
+    # booking = booking.find(params[:id])
+
+    #creating session id for stripe
     session = Stripe::Checkout::Session.create({
       payment_method_types: ['card'],
       line_items: [{
