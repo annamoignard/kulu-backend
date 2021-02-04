@@ -10,7 +10,7 @@ class BookingsController < ApplicationController
     
   #New booking is created 
     def create
-      @booking = booking.create(booking_params)
+      @booking = Booking.create(booking_params)
       booking.client_id = current_user.id
       if booking.save
         render status: :created

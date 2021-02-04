@@ -57,11 +57,3 @@ session_fifteen = Session.create(date: "06-02-2021", name: "Vinyasa Flow", time:
 session_sixteen = Session.create(date: "06-02-2021", name: "Vinyasa Flow", time: "5:00pm", instructor_id: instructor_five.id, minutes: 60)
 session_seventeen = Session.create(date: "07-02-2021", name: "Power Flow", time: "6:00am", instructor_id: instructor_four.id, minutes: 60)
 session_eighteen = Session.create(date: "07-02-2021", name: "Vinyasa Flow", time: "9:30am", instructor_id: instructor_three.id, minutes: 60)
-
-
-#Seeded Bookings
-  # Booking.create(
-  #   session: "Vinyasa Flow",
-  #   client_name: "Student One",
-  #   date: "01-02-2021"
-  # )
