@@ -43,6 +43,7 @@ class BookingsController < ApplicationController
         date: client_booking.date,
         instructor: client_booking.instructor
       }
+      UserNotifierMailer.send_confirmation_email(@user).deliver
     end
 
   #client can drop/cancel a booking
