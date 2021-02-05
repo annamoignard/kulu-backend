@@ -35,9 +35,6 @@ user_five =  User.create(username: "Nicole", email:"nicole@test.com", password: 
 
 instructor_five = Instructor.create(user_id: user_five.id, name: "Nicole")
 
-
-
-
 #Seeded Sessions
 session_one = Session.create(date: "01-02-2021", name: "Vinyasa Flow", time: "6:00am", instructor_id: instructor_five.id, minutes: 60)
 session_two = Session.create(date: "01-02-2021", name: "Vinyasa Flow", time: "9:30am", instructor_id: instructor_one.id, minutes: 60)
@@ -57,3 +54,14 @@ session_fifteen = Session.create(date: "06-02-2021", name: "Vinyasa Flow", time:
 session_sixteen = Session.create(date: "06-02-2021", name: "Vinyasa Flow", time: "5:00pm", instructor_id: instructor_five.id, minutes: 60)
 session_seventeen = Session.create(date: "07-02-2021", name: "Power Flow", time: "6:00am", instructor_id: instructor_four.id, minutes: 60)
 session_eighteen = Session.create(date: "07-02-2021", name: "Vinyasa Flow", time: "9:30am", instructor_id: instructor_three.id, minutes: 60)
+
+
+#Seeded Bookings
+harry =  User.create(username: "Harry", email:"harry@test.com", password: "password", password_confirmation: "password")
+sally =  User.create(username: "Sally", email:"sally@test.com", password: "password", password_confirmation: "password")
+
+
+booking_one = Booking.create(user_id: harry.id, session_id: session_one.id)
+booking_two = Booking.create(user_id: sally.id, session_id: session_two.id)
+
+
