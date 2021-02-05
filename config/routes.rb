@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :sessions
-  resources :bookings, only: [:index, :show, :create] 
+  resources :bookings, only: [:index, :show, :create, :destroy] 
   resources :instructors, only: [:index, :show, :create, :edit, :destroy]
   resources :status, only: [:index]
   resources :charges, only: [:create]
@@ -8,7 +8,12 @@ Rails.application.routes.draw do
     post "/sign-up", to: "users#create" 
     post "/sign-in", to: 'users#sign_in'
   end 
-  get "/charges/success", to: "charges#success"
-  get "/charges/cancel", to: "charges#cancel"
+    get '/bookings/all', to: 'bookings#index'  
+    get '/bookings/new', to: 'bookings#create'
+    get '/bookings/client/:id', to: 'bookings#show'
+    get '/bookings/client', to: 'bookings#client'
+
+    get "/charges/success", to: "charges#success"
+    get "/charges/cancel", to: "charges#cancel"
   end
   
