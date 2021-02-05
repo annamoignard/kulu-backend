@@ -3,7 +3,17 @@ class SessionsController < ApplicationController
 
   def index
     sessions = Session.all
-    render json: {sessions: sessions, instructor: current_user.try(:instructor)}
+    session_data = sessions.map do |session|
+      {
+        name: session.name,
+        date: session.date,
+        minutes: session.minutes,
+        cost: session.cost,
+        instructor_name:  session.instructor.name,
+        time: session.time
+      }
+    end 
+    render json: {sessions: session_data, instructor: current_user.try(:instructor)}
   end
 
   def show
