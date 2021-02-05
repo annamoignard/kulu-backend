@@ -21,6 +21,7 @@ class BookingsController < ApplicationController
       booking = Booking.new(session_id: session.id)
       booking.user_id = current_user.id
       if booking.save
+        UserConfirmationMailer.send_confirmation_email(current_user).deliver
         render status: :created
       else
         render status: :unprocessable_entry
@@ -43,7 +44,6 @@ class BookingsController < ApplicationController
         date: client_booking.date,
         instructor: client_booking.instructor
       }
-      UserNotifierMailer.send_confirmation_email(@user).deliver
     end
 
   #client can drop/cancel a booking
