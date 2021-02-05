@@ -3,7 +3,7 @@ class ChargesController < ApplicationController
   end
   
   def create
-    booking = Booking.find(params[:id])
+    # booking = Booking.find(params[:id])
 
     #creating session id for stripe
     session = Stripe::Checkout::Session.create({
@@ -19,7 +19,7 @@ class ChargesController < ApplicationController
         quantity: 1,
       }],
       mode: 'payment',
-      success_url: "http://localhost:3000/charges/success?booking_id=#{booking.id}",
+      success_url: "http://localhost:3000/charges/success",
       cancel_url: "http://localhost:3000/charges/cancel",
     })
     render json: { id: session.id }

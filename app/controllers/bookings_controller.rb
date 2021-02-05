@@ -11,7 +11,7 @@ class BookingsController < ApplicationController
   #New booking is created 
     def create
       @booking = Booking.create(booking_params)
-      booking.client_id = current_user.id
+      booking.user_id = current_user.id
       if booking.save
         render status: :created
       else
@@ -40,7 +40,7 @@ class BookingsController < ApplicationController
     end
   
     def booking_params
-      params.require(:booking).permit(:date, :time, :name, :session, :cost)
+      params.require(:booking).permit(:date, :time, :name, :session, :cost, :minutes)
     end
 
 end
