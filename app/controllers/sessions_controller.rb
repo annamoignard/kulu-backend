@@ -10,7 +10,8 @@ class SessionsController < ApplicationController
         minutes: session.minutes,
         cost: session.cost,
         instructor_name:  session.instructor.name,
-        time: session.time
+        time: session.time,
+        day: session.day
       }
     end 
     render json: {sessions: session_data, instructor: current_user.try(:instructor)}
@@ -49,7 +50,7 @@ class SessionsController < ApplicationController
   end
 
   def session_params
-    params.require(:session).permit(:date, :time, :name, :minutes, :cost)
+    params.require(:session).permit(:date, :time, :name, :minutes, :cost, :day)
   end 
 
   
