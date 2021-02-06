@@ -9,7 +9,8 @@ class BookingsController < ApplicationController
         {
           name: booking.session.name,
           time: booking.session.time,
-          date: booking.session.date
+          date: booking.session.date,
+          day: booking.session.day
         }
       end
       render json: {bookings: booking_data}
@@ -17,7 +18,7 @@ class BookingsController < ApplicationController
 
   #New booking is created 
     def create
-      session = Session.find_by(name: params[:name], time: params[:time], date: params[:date])
+      session = Session.find_by(name: params[:name], time: params[:time], date: params[:date], day: params[:day])
       booking = Booking.new(session_id: session.id)
       booking.user_id = current_user.id
       if booking.save
@@ -46,6 +47,6 @@ class BookingsController < ApplicationController
     end
   
     def booking_params
-      params.require(:booking).permit(:date, :time, :name, :session, :cost, :minutes, :client_name)
+      params.require(:booking).permit(:date, :time, :name, :session, :cost, :minutes)
     end
 end
