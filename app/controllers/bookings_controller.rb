@@ -34,18 +34,6 @@ class BookingsController < ApplicationController
       render json: booking
     end 
 
-  #client can see what class they reserved a spot in
-    def client
-      #not sure user.booking.new
-      client_booking = user.bookings.new
-      session = client_booking.session
-      render json: { 
-        name: session.name,
-        date: client_booking.date,
-        instructor: client_booking.instructor
-      }
-    end
-
   #client can drop/cancel a booking
     def destroy
       @booking.destroy
