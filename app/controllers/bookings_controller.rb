@@ -4,21 +4,20 @@ class BookingsController < ApplicationController
   
   #client sees bookings they have made. Instructors see client bookings. 
     def index
-      # bookings = Booking.all
-      booking_data = current_user.bookings.map do |booking|
+      bookings = current_user.bookings.map do |booking|
         {
           name: booking.session.name,
           time: booking.session.time,
-          date: booking.session.date,
-          day: booking.session.day
+          date: booking.session.date
         }
       end
-      render json: {bookings: booking_data}
+      render json: {bookings: bookings}
     end
+    
 
   #New booking is created 
     def create
-      session = Session.find_by(name: params[:name], time: params[:time], date: params[:date], day: params[:day])
+      session = Session.find_by(name: params[:name], time: params[:time], date: params[:date])
       booking = Booking.new(session_id: session.id)
       booking.user_id = current_user.id
       if booking.save
@@ -32,8 +31,20 @@ class BookingsController < ApplicationController
   #client can see booking
     def show
       booking = Booking.find(booking_params[:id])
-      render json: @booking
+      render json: booking
     end 
+
+  #client can see what class they reserved a spot in
+    def client
+      #not sure user.booking.new
+      client_booking = user.bookings.new
+      session = client_booking.session
+      render json: { 
+        name: session.name,
+        date: client_booking.date,
+        instructor: client_booking.instructor
+      }
+    end
 
   #client can drop/cancel a booking
     def destroy
@@ -49,4 +60,5 @@ class BookingsController < ApplicationController
     def booking_params
       params.require(:booking).permit(:date, :time, :name, :session, :cost, :minutes)
     end
-end
+
+  end 
