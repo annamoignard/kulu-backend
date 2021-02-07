@@ -6,6 +6,7 @@ class BookingsController < ApplicationController
     def index
       bookings = current_user.bookings.map do |booking|
         {
+          id: booking.id,
           name: booking.session.name,
           time: booking.session.time,
           date: booking.session.date

@@ -5,6 +5,7 @@ class SessionsController < ApplicationController
     sessions = Session.all
     session_data = sessions.map do |session|
       {
+        id: session.id,
         name: session.name,
         date: session.date,
         minutes: session.minutes,
