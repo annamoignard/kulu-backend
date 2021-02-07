@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :sessions
-  resources :bookings, only: [:index, :show, :create, :destroy] 
+  resources :bookings 
+  # resources :bookings, only: [:index, :show, :create, :destroy] 
   resources :instructors, only: [:index, :show, :create, :edit, :destroy]
   resources :status, only: [:index]
   resources :charges, only: [:create]
