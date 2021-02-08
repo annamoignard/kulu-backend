@@ -2,11 +2,8 @@
 
 FactoryBot.define do
   factory :booking do
-    sequence :session_id do |n|
-      "Session no.#{n}"
-    end
-    sequence :user_id do |n|
-      "User no.#{n}"
+      association :user
+      association :session
+
     end
   end
-end

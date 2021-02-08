@@ -27,7 +27,8 @@ class BookingsController < ApplicationController
       # UserConfirmationMailer.send_confirmation_email(current_user).deliver
       render status: :created
     else
-      render status: :unprocessable_entry
+      render json: {errors: booking.errors.full_messages }, status: :unprocessable_entity 
+     # render status: :unprocessable_entry
     end
   end
 

@@ -2,9 +2,9 @@
 
 FactoryBot.define do
   factory :session do
-    sequence :time do |n|
-      "Session no.#{n}"
-    end
     name { 'classname' }
+    cost { 25 }
+    day { 'Monday' }
+    association :instructor
   end
 end
