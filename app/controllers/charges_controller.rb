@@ -2,9 +2,8 @@ class ChargesController < ApplicationController
   def new
   end
   
-  def create
-    # booking = Booking.find(params[:id])
-    
+  def create  
+    booking = Booking.last
    #creating session id for stripe
     session = Stripe::Checkout::Session.create({
       payment_method_types: ['card'],
@@ -19,15 +18,17 @@ class ChargesController < ApplicationController
         quantity: 1,
       }],
       mode: 'payment',
-      success_url: "http://localhost:3000/charges/success",
-      cancel_url: "http://localhost:3000/charges/cancel",
+      success_url: "http://localhost:8080/success/#{booking.id}",
+      cancel_url: "http://localhost:8080/charges/cancel",
     })
     render json: { id: session.id }
+    UserConfirmationMailer.send_confirmation_email(current_user).deliver
   end
-
+  
   def success
-    @booking = Booking.find(params[:id])
+    # @booking = Booking.find(params[:id])
   end
 
-  def cancel; end
+  def cancel
+  end
 end
