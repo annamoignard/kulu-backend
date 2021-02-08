@@ -17,9 +17,9 @@ RSpec.describe 'Sessions', type: :request do
 
     it 'sessions contain the expected attributes' do
       expect(@json_response['sessions'].first).to include({
-                                                            'day' => @first_session.day,
-                                                            'name' => @first_session.name
-                                                          })
+        'day' => @first_session.day,
+        'name' => @first_session.name
+      })
     end
   end
 end
