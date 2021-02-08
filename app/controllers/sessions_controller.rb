@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class SessionsController < ApplicationController
-  before_action :set_session, only: [:show, :destroy, :update]
+  before_action :set_session, only: %i[show destroy update]
 
   def index
     sessions = Session.all
@@ -10,17 +12,17 @@ class SessionsController < ApplicationController
         date: session.date,
         minutes: session.minutes,
         cost: session.cost,
-        instructor_name:  session.instructor.name,
+        instructor_name: session.instructor.name,
         time: session.time,
         day: session.day
       }
-    end 
-    render json: {sessions: session_data, instructor: current_user.try(:instructor)}
+    end
+    render json: { sessions: session_data, instructor: current_user.try(:instructor) }
   end
 
   def show
-    render json: @session 
-  end 
+    render json: @session
+  end
 
   def create
     session = Session.new(session_params)
@@ -28,31 +30,29 @@ class SessionsController < ApplicationController
     if session.save
       render status: :created
     else
-      render status: :bad_request 
+      render status: :bad_request
     end
-  end 
+  end
 
-  def update 
+  def update
     if @session.update(session_params)
       render status: :ok
     else
       render status: :bad_request
     end
-  end 
+  end
 
   def destroy
     @session.destroy
-  end 
+  end
 
-  private 
+  private
 
-  def set_session 
+  def set_session
     @session = Session.find(params[:id])
   end
 
   def session_params
     params.require(:session).permit(:date, :time, :name, :minutes, :cost, :day)
-  end 
-
-  
+  end
 end

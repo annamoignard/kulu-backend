@@ -1,9 +1,10 @@
+# frozen_string_literal: true
+
 class UserNotifierMailer < ApplicationMailer
-  default :from => 'amoignard.coder@gmail.com'
+  default from: 'amoignard.coder@gmail.com'
 
   def send_signup_email(user)
     @user = user
-    mail( :to => @user.email, :subject => 'Thanks for signing up!')
+    mail(to: @user.email, subject: 'Thanks for signing up!')
   end
-
 end
