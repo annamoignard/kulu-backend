@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   # resources :bookings, only: [:index, :show, :create, :destroy]
   resources :instructors, only: %i[index show create edit destroy]
   resources :status, only: [:index]
-  resources :charges, only: [:create]
+  resources :charges, only: [:create, :success, :cancel]
   scope '/auth' do
     post '/sign-up', to: 'users#create'
     post '/sign-in', to: 'users#sign_in'
