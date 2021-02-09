@@ -23,7 +23,7 @@ class BookingsController < ApplicationController
       booking = Booking.new(session_id: session.id)
       booking.user_id = current_user.id
       if booking.save
-        # UserConfirmationMailer.send_confirmation_email(current_user).deliver
+        UserConfirmationMailer.send_confirmation_email(current_user).deliver
         render status: :created
       else
         render status: :unprocessable_entry

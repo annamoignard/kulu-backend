@@ -22,7 +22,6 @@ class ChargesController < ApplicationController
       cancel_url: "http://localhost:8080/charges/cancel",
     })
     render json: { id: session.id }
-    UserConfirmationMailer.send_confirmation_email(current_user).deliver
   end
   
   def success
