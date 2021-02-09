@@ -20,7 +20,7 @@ user_five = User.create(username: 'Nicole Young', email: 'nicole@test.com', pass
 
 instructor_five = Instructor.create(user_id: user_five.id, name: 'Nicole Young')
 
-# Seeded Sessions
+# Seeded Sessions for our schedule display
 session_one = Session.create(date: '01-02-2021', day: 'Monday', name: 'Vinyasa Flow', time: '6:00am', cost: 25, instructor_id: instructor_five.id, minutes: 60)
 session_two = Session.create(date: '01-02-2021', day: 'Monday', name: 'Vinyasa Flow', time: '9:30am', cost: 25, instructor_id: instructor_one.id, minutes: 60)
 session_three = Session.create(date: '01-02-2021', day: 'Monday', name: 'Restorative Flow', time: '5:00pm', cost: 25, instructor_id: instructor_three.id, minutes: 90)
