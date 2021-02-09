@@ -3,6 +3,7 @@
 class ChargesController < ApplicationController
   def new; end
 
+  #  here is all the stripe logic for payments of bookings 
   def create
     booking = Booking.last
 

@@ -38,6 +38,7 @@ class SessionsController < ApplicationController
     end
   end
 
+  # this allows instructors to update sessions and the instructor name has been brought in from the instructor table
   def update
     if @session.update(session_params)
       instructor = Instructor.find_by_name(params[:session][:instructor_name])
@@ -52,6 +53,7 @@ class SessionsController < ApplicationController
     end
   end
 
+  # we can delete sessions, even if a client has booked in because we delete all dependancies 
   def destroy
     @session.destroy
   end
@@ -62,6 +64,7 @@ class SessionsController < ApplicationController
     @session = Session.find(params[:id])
   end
 
+  # setting our session params for the other methods
   def session_params
     params.require(:session).permit(:date, :time, :name, :minutes, :cost, :day)
   end

@@ -6,6 +6,7 @@ class UsersController < ApplicationController
     if @user.save
       auth_token = Knock::AuthToken.new payload: { sub: @user.id }
       render json: { username: @user.username, jwt: auth_token.token }, status: :created
+      # here is aour mailer for signup! 
       UserNotifierMailer.send_signup_email(@user).deliver
     else
       render json: @user.errors, status: :unprocessable_entity
