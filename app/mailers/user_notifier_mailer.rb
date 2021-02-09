@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class UserNotifierMailer < ApplicationMailer
-  default from: 'kuluyogastudio@gmail.com'
+  default from: 'amoignard.coder@gmail.com'
 
   #  sends an email when a user signs up 
   def send_signup_email(user)

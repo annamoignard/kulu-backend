@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class UserConfirmationMailer < ApplicationMailer
-  default from: 'kuluyogastudio@gmail.com'
+  default from: 'amoignard.coder@gmail.com'
 
   # sends an email when a user confrims a boooking
   def send_confirmation_email(user)
