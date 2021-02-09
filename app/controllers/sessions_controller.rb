@@ -3,6 +3,7 @@
 class SessionsController < ApplicationController
   before_action :set_session, only: %i[show destroy update]
 
+  # clinets and instructors can see all available sessions. this is mapping through our data, mostly so i can get the instructor name which comes from the booking model
   def index
     sessions = Session.all
     session_data = sessions.map do |session|
@@ -20,13 +21,16 @@ class SessionsController < ApplicationController
     render json: { sessions: session_data, instructor: current_user.try(:instructor) }
   end
 
+
   def show
     render json: @session
   end
 
+  # this allows instructors to create sessions to add the schedule 
   def create
     session = Session.new(session_params)
-    session.instructor_id = current_user.id
+    instructor = Instructor.find_by_name(params[:session][:instructor_name])
+    session.instructor_id = instructor.id
     if session.save
       render status: :created
     else
@@ -36,7 +40,13 @@ class SessionsController < ApplicationController
 
   def update
     if @session.update(session_params)
-      render status: :ok
+      instructor = Instructor.find_by_name(params[:session][:instructor_name])
+      @session.instructor_id = instructor.id
+      if @session.save
+        render status: :created
+      else
+        render status: :bad_request
+      end
     else
       render status: :bad_request
     end
