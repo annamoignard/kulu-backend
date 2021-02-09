@@ -25,7 +25,7 @@ class ChargesController < ApplicationController
         quantity: 1
       }],
       mode: 'payment',
-      success_url: "#{url}/success",
+      success_url: "#{url}/success/#{booking.id}",
       cancel_url: "#{url}/cancel"
     })
     render json: { id: session.id }
