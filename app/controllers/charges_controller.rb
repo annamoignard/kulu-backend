@@ -9,7 +9,7 @@ class ChargesController < ApplicationController
     if Rails.env.development?
       url = "http://localhost:8080"
     else
-      url = "https://enigmatic-everglades-12630.herokuapp.com"
+      url = "https://brave-wescoff-afa9bb.netlify.app"
     end
     # creating session id for stripe
     session = Stripe::Checkout::Session.create({
